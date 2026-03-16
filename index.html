@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Name — Web Developer & AI Educator</title>
+  <!--
+  ╔══════════════════════════════════════════════════════════╗
+  ║              COMPLETE EDIT GUIDE — READ FIRST            ║
+  ╠══════════════════════════════════════════════════════════╣
+  ║  Use Ctrl+F in VS Code to find each section quickly      ║
+  ║                                                          ║
+  ║  SECTION 1 — YOUR NAME & TITLE   → search: EDIT_NAME    ║
+  ║  SECTION 2 — YOUR PHOTO          → search: EDIT_PHOTO   ║
+  ║  SECTION 3 — ABOUT TEXT          → search: EDIT_ABOUT   ║
+  ║  SECTION 4 — SKILLS              → search: EDIT_SKILLS  ║
+  ║  SECTION 5 — PROJECTS & PHOTOS   → search: EDIT_PROJECT ║
+  ║  SECTION 6 — AI CLASS CARDS      → search: EDIT_AICARD  ║
+  ║  SECTION 7 — GOOGLE FORM         → search: EDIT_FORM    ║
+  ║  SECTION 8 — CONTACT LINKS       → search: EDIT_CONTACT ║
+  ║  SECTION 9 — GOOGLE SHEETS URL   → search: EDIT_SHEETS  ║
+  ║  SECTION 10 — ANNOUNCEMENT BAR   → search: EDIT_ANN     ║
+  ╚══════════════════════════════════════════════════════════╝
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+
+    :root {
+      --bg:     #0b0b10;
+      --bg2:    #0f0f17;
+      --bg3:    #14141f;
+      --border: rgba(140,100,220,0.2);
+      --p1:     #7c3aed;
+      --p2:     #a855f7;
+      --p3:     #c084fc;
+      --accent: #e9d5ff;
+      --g1:     #6b7280;
+      --g2:     #9ca3af;
+      --g3:     #d1d5db;
+      --white:  #f9f7ff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--g3);
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px; line-height: 1.7;
+      overflow-x: hidden; cursor: none;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    ::selection { background: var(--p1); color: #fff; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--p1); border-radius: 4px; }
+
+    /* ── ANNOUNCEMENT BAR ── */
+    #ann-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 2000;
+      background: linear-gradient(90deg, var(--p1), var(--p2), var(--p1));
+      background-size: 200% 100%;
+      animation: annShimmer 5s linear infinite;
+      padding: 9px 16px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    @keyframes annShimmer { 0%{background-position:0%} 100%{background-position:200%} }
+    .ann-badge {
+      flex-shrink: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .58rem; letter-spacing: .12em; text-transform: uppercase;
+      background: rgba(255,255,255,.2); color: #fff;
+      padding: 3px 10px; border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.3); white-space: nowrap;
+    }
+    .ann-track { overflow: hidden; flex: 1; }
+    .ann-scroll {
+      display: flex; white-space: nowrap;
+      will-change: transform;
+    }
+    .ann-item {
+      display: inline-flex; align-items: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: .8rem; font-weight: 600; color: #fff;
+      flex-shrink: 0; padding: 0 32px;
+      border-right: 1px solid rgba(255,255,255,.25);
+    }
+    .ann-close {
+      flex-shrink: 0; background: none; border: none;
+      color: rgba(255,255,255,.7); font-size: 1rem;
+      cursor: pointer; padding: 0 4px; transition: color .2s; line-height: 1;
+    }
+    .ann-close:hover { color: #fff; }
+    body.has-bar nav  { top: 37px; }
+    body.has-bar #hero { padding-top: 180px; }
+
+    /* ── CURSOR ── */
+    #c-dot {
+      position: fixed; width: 8px; height: 8px;
+      background: var(--p3); border-radius: 50%;
+      pointer-events: none; z-index: 99999;
+      transform: translate(-50%,-50%);
+      transition: width .2s, height .2s, background .2s;
+    }
+    #c-ring {
+      position: fixed; width: 40px; height: 40px;
+      border: 1.5px solid var(--p2); border-radius: 50%;
+      pointer-events: none; z-index: 99998;
+      transform: translate(-50%,-50%);
+      transition: width .3s, height .3s, border-color .3s;
+    }
+    body.hov #c-dot { width: 12px; height: 12px; background: var(--p2); }
+    body.hov #c-ring { width: 58px; height: 58px; border-color: var(--p3); }
+
+    /* ── BACKGROUND ── */
+    .blob {
+      position: fixed; border-radius: 50%;
+      filter: blur(110px); pointer-events: none; z-index: 0;
+      animation: blobF 12s ease-in-out infinite alternate;
+    }
+    .b1 { width:600px;height:600px;background:rgba(124,58,237,.15);top:-200px;left:-150px; }
+    .b2 { width:500px;height:500px;background:rgba(168,85,247,.10);bottom:-150px;right:-100px;animation-delay:-6s; }
+    .b3 { width:300px;height:300px;background:rgba(192,132,252,.08);top:40%;left:50%;animation-delay:-3s; }
+    @keyframes blobF { from{transform:translate(0,0)scale(1)} to{transform:translate(40px,50px)scale(1.1)} }
+    #particles { position:fixed;inset:0;z-index:0;pointer-events:none; }
+
+    /* ── LAYOUT ── */
+    .wrap { position: relative; z-index: 1; }
+    .ctr  { max-width: 1180px; margin: 0 auto; padding: 0 6%; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 18px 6%;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(11,11,16,.88);
+      backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid var(--border);
+      animation: navIn .8s ease both;
+    }
+    @keyframes navIn { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:none} }
+    .logo { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; color:var(--white); }
+    .logo span { color: var(--p3); }
+    .nav-links { display:flex; gap:32px; }
+    .nav-links a {
+      font-size:.72rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--g2); position:relative; transition:color .3s;
+    }
+    .nav-links a::after {
+      content:''; position:absolute; bottom:-4px; left:0;
+      width:0; height:1px; background:var(--p3); transition:width .3s;
+    }
+    .nav-links a:hover { color:var(--p3); }
+    .nav-links a:hover::after { width:100%; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height:100vh;
+      display:flex; flex-direction:column; justify-content:center;
+      padding:140px 6% 80px; position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(124,58,237,.06) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(124,58,237,.06) 1px,transparent 1px);
+      background-size:80px 80px;
+      mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000,transparent);
+      pointer-events:none;
+    }
+    .hero-eyebrow {
+      display:inline-flex; align-items:center; gap:10px;
+      font-family:'JetBrains Mono',monospace;
+      font-size:.7rem; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--p3); margin-bottom:22px;
+      animation:fadeUp .8s .2s ease both;
+    }
+    .hero-eyebrow::before { content:''; width:28px; height:1px; background:var(--p3); }
+    .ldot { width:6px;height:6px;background:var(--p2);border-radius:50%;animation:lpulse 2s ease-in-out infinite; }
+    @keyframes lpulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+    .hero-name {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(3.5rem,10vw,9rem); font-weight:900; line-height:.92;
+      letter-spacing:-.03em; color:var(--white); margin-bottom:24px;
+      animation:fadeUp .8s .4s ease both;
+    }
+    .hero-name .grad {
+      background:linear-gradient(135deg,var(--p2),var(--p3),var(--accent));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .hero-role {
+      font-family:'JetBrains Mono',monospace;
+      font-size:clamp(.9rem,2vw,1.15rem); color:var(--g2); margin-bottom:40px;
+      animation:fadeUp .8s .6s ease both;
+    }
+    #typed { color:var(--p3); }
+    .cur { color:var(--p2); animation:blink 1s step-end infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .hero-btns { display:flex; gap:14px; flex-wrap:wrap; animation:fadeUp .8s .8s ease both; }
+    .btn {
+      display:inline-flex; align-items:center; gap:8px;
+      font-family:'Outfit',sans-serif; font-size:.8rem; font-weight:600;
+      letter-spacing:.08em; text-transform:uppercase;
+      padding:14px 32px; border-radius:6px; cursor:pointer; border:none; transition:all .3s;
+    }
+    .btn-pri { background:linear-gradient(135deg,var(--p1),var(--p2)); color:#fff; box-shadow:0 0 30px rgba(124,58,237,.5); }
+    .btn-pri:hover { transform:translateY(-3px); box-shadow:0 0 50px rgba(124,58,237,.7); }
+    .btn-ghost { background:transparent; color:var(--g3); border:1px solid var(--border); }
+    .btn-ghost:hover { border-color:var(--p2); color:var(--p3); transform:translateY(-3px); }
+    .hero-scroll {
+      position:absolute; bottom:40px; left:6%;
+      display:flex; align-items:center; gap:12px;
+      font-family:'JetBrains Mono',monospace;
+      font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--g1);
+      animation:fadeUp .8s 1.2s ease both;
+    }
+    .scroll-bar { width:1px; height:50px; background:linear-gradient(to bottom,var(--p2),transparent); animation:sbar 2s ease-in-out infinite; }
+    @keyframes sbar { 0%,100%{opacity:.3;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.3)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none} }
+
+    /* ── DIVIDER ── */
+    .divl { height:1px; position:relative; z-index:1; background:linear-gradient(to right,transparent,var(--border),transparent); }
+
+    /* ── SECTIONS BASE ── */
+    section { padding:100px 0; position:relative; z-index:1; }
+    .stag { display:flex; align-items:center; gap:10px; font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:var(--p3); margin-bottom:10px; }
+    .stag::before { content:''; width:22px; height:1px; background:var(--p3); }
+    .stitle { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,5vw,3.8rem); font-weight:800; color:var(--white); letter-spacing:-.03em; line-height:1.1; margin-bottom:56px; }
+    .rv { opacity:0; transform:translateY(40px); transition:opacity .7s ease,transform .7s ease; }
+    .rv.on { opacity:1; transform:none; }
+
+    /* ── ABOUT ── */
+    #about { background:var(--bg2); }
+    .about-grid { display:grid; grid-template-columns:1fr 1.5fr; gap:80px; align-items:center; }
+    .photo-wrap { position:relative; display:inline-block; width:100%; }
+    .photo-box {
+      width:100%; aspect-ratio:1; max-width:370px;
+      background:var(--bg3); border:1px solid var(--border);
+      border-radius:12px; overflow:hidden;
+      display:flex; align-items:center; justify-content:center; position:relative;
+    }
+    .photo-box::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(124,58,237,.15),transparent 60%); pointer-events:none; z-index:1; }
+    .photo-box img { width:100%; height:100%; object-fit:cover; display:block; }
+    .photo-init { font-family:'Playfair Display',serif; font-size:6rem; font-weight:900; color:rgba(124,58,237,.3); letter-spacing:-.05em; }
+    .corner { position:absolute; width:36px; height:36px; border-color:var(--p2); border-style:solid; }
+    .corner.tl { top:-8px;left:-8px; border-width:2px 0 0 2px; border-radius:2px; }
+    .corner.br { bottom:-8px;right:-8px; border-width:0 2px 2px 0; border-radius:2px; }
+    .atext p { font-size:.97rem; color:var(--g3); line-height:1.9; margin-bottom:18px; }
+    .atext p strong { color:var(--p3); font-weight:600; }
+    .stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:34px; }
+    .stat { background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:16px 20px; transition:border-color .3s,transform .3s; }
+    .stat:hover { border-color:var(--p2); transform:translateY(-2px); }
+    .slbl { font-family:'JetBrains Mono',monospace; font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--g1); margin-bottom:4px; }
+    .sval { font-weight:700; font-size:.92rem; color:var(--white); }
+
+    /* ── SKILLS ── */
+    #skills { background:var(--bg); }
+    .skills-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px; }
+    .skill-card { background:var(--bg3); border:1px solid var(--border); border-radius:10px; padding:24px; position:relative; overflow:hidden; transition:transform .3s,border-color .3s,box-shadow .3s; }
+    .skill-card::after { content:''; position:absolute; top:0;left:0;right:0; height:2px; background:linear-gradient(90deg,var(--p1),var(--p3)); transform:scaleX(0); transform-origin:left; transition:transform .4s ease; }
+    .skill-card:hover { transform:translateY(-5px); border-color:var(--p2); box-shadow:0 20px 50px rgba(124,58,237,.2); }
+    .skill-card:hover::after { transform:scaleX(1); }
+    .sk-icon { font-size:1.8rem; margin-bottom:14px; display:block; }
+    .sk-name { font-weight:700; font-size:1rem; color:var(--white); margin-bottom:12px; }
+    .sk-track { height:3px; background:rgba(255,255,255,.07); border-radius:2px; overflow:hidden; margin-bottom:6px; }
+    .sk-fill { height:100%; border-radius:2px; background:linear-gradient(90deg,var(--p1),var(--p3)); width:0; transition:width 1.4s cubic-bezier(.4,0,.2,1); }
+    .sk-pct { font-family:'JetBrains Mono',monospace; font-size:.62rem; color:var(--g1); letter-spacing:.1em; }
+
+    /* ── PROJECTS ── */
+    #projects { background:var(--bg2); }
+    .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:24px; }
+    .proj-card {
+      background:var(--bg3); border:1px solid var(--border);
+      border-radius:14px; overflow:hidden;
+      display:flex; flex-direction:column;
+      transition:transform .35s,box-shadow .35s,border-color .3s;
+    }
+    .proj-card:hover { transform:translateY(-8px); border-color:var(--p2); box-shadow:0 30px 70px rgba(124,58,237,.25); }
+
+    /* Project thumbnail — supports photo OR placeholder */
+    .proj-thumb {
+      aspect-ratio:16/9; position:relative;
+      overflow:hidden; background:var(--bg3);
+    }
+    /* When there IS a photo */
+    .proj-thumb img {
+      width:100%; height:100%; object-fit:cover; display:block;
+      transition:transform .5s ease;
+    }
+    .proj-card:hover .proj-thumb img { transform:scale(1.05); }
+    /* Overlay tint on top of photo */
+    .proj-thumb .proj-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(11,11,16,.85) 0%, rgba(11,11,16,.1) 60%);
+      pointer-events:none;
+    }
+    /* Placeholder when NO photo */
+    .proj-thumb-placeholder {
+      width:100%; height:100%;
+      background:linear-gradient(135deg,var(--bg3),rgba(124,58,237,.12));
+      display:flex; align-items:center; justify-content:center; position:relative;
+    }
+    .proj-num { font-family:'Playfair Display',serif; font-size:7rem; font-weight:900; color:rgba(124,58,237,.1); position:absolute; letter-spacing:-.05em; pointer-events:none; }
+    .proj-glow { width:120px; height:120px; background:radial-gradient(circle,rgba(168,85,247,.35),transparent 70%); border-radius:50%; animation:glowP 3s ease-in-out infinite; position:relative; z-index:1; }
+    @keyframes glowP { 0%,100%{transform:scale(1);opacity:.6} 50%{transform:scale(1.4);opacity:1} }
+
+    /* Project body */
+    .proj-body { padding:24px; flex:1; display:flex; flex-direction:column; }
+    .proj-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+    .tag { font-family:'JetBrains Mono',monospace; font-size:.58rem; letter-spacing:.1em; text-transform:uppercase; padding:4px 10px; border-radius:4px; background:rgba(124,58,237,.18); color:var(--p3); border:1px solid rgba(124,58,237,.3); }
+    .proj-name { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; color:var(--white); margin-bottom:10px; }
+    .proj-desc { font-size:.88rem; color:var(--g2); line-height:1.7; flex:1; margin-bottom:20px; }
+    .proj-footer { display:flex; gap:16px; padding-top:16px; border-top:1px solid var(--border); flex-wrap:wrap; }
+    .plnk {
+      font-size:.75rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--p3); display:inline-flex; align-items:center; gap:5px;
+      padding:8px 16px; border-radius:6px;
+      border:1px solid rgba(124,58,237,.3);
+      background:rgba(124,58,237,.08);
+      transition:all .25s;
+    }
+    .plnk:hover { color:var(--accent); border-color:var(--p2); background:rgba(124,58,237,.18); gap:9px; }
+
+    /* ── AI CLASSES ── */
+    #ai-classes { background:var(--bg); }
+    .ai-intro { max-width:700px; margin-bottom:52px; }
+    .ai-intro p { font-size:.97rem; color:var(--g2); line-height:1.85; }
+    .ai-intro p strong { color:var(--p3); font-weight:600; }
+    .ai-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; margin-bottom:60px; }
+    .ai-card { background:var(--bg3); border:1px solid var(--border); border-radius:12px; padding:28px 26px; position:relative; overflow:hidden; transition:transform .3s,border-color .3s,box-shadow .3s; }
+    .ai-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(124,58,237,.07),transparent 60%); pointer-events:none; }
+    .ai-card:hover { transform:translateY(-5px); border-color:var(--p2); box-shadow:0 20px 50px rgba(124,58,237,.2); }
+    .ai-icon { font-size:2rem; margin-bottom:16px; display:block; }
+    .ai-title { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:700; color:var(--white); margin-bottom:10px; }
+    .ai-desc { font-size:.87rem; color:var(--g2); line-height:1.75; margin-bottom:16px; }
+    .ai-tag { display:inline-flex; align-items:center; gap:6px; font-family:'JetBrains Mono',monospace; font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; color:var(--p3); background:rgba(124,58,237,.15); border:1px solid rgba(124,58,237,.25); padding:4px 10px; border-radius:4px; }
+
+    /* ── GOOGLE FORM ── */
+    .form-section { background:var(--bg3); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:48px; }
+    .form-hdr { display:flex; align-items:center; gap:14px; padding:22px 28px; border-bottom:1px solid var(--border); background:rgba(124,58,237,.06); }
+    .form-hdr-icon { font-size:1.3rem; }
+    .form-hdr-title { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:700; color:var(--white); }
+    .form-hdr-sub { font-size:.8rem; color:var(--g2); margin-top:2px; }
+    .form-notice { display:flex; align-items:flex-start; gap:12px; padding:14px 28px; background:rgba(124,58,237,.04); border-bottom:1px solid var(--border); font-size:.82rem; color:var(--g2); line-height:1.6; }
+    .form-notice strong { color:var(--p3); }
+    .form-embed iframe { width:100%; border:none; display:block; min-height:640px; }
+    .form-fallback { padding:40px 28px; text-align:center; }
+    .form-fallback p { color:var(--g2); font-size:.9rem; margin-bottom:20px; line-height:1.7; }
+    .open-form-btn { display:inline-flex; align-items:center; gap:8px; font-family:'Outfit',sans-serif; font-size:.8rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; padding:14px 32px; border-radius:6px; background:linear-gradient(135deg,var(--p1),var(--p2)); color:#fff; border:none; cursor:pointer; box-shadow:0 0 24px rgba(124,58,237,.4); transition:all .3s; text-decoration:none; }
+    .open-form-btn:hover { transform:translateY(-3px); box-shadow:0 0 40px rgba(124,58,237,.6); }
+
+    /* ── EVENTS TABLE ── */
+    .events-box { background:var(--bg3); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+    .events-hdr { display:flex; align-items:center; gap:12px; padding:20px 28px; border-bottom:1px solid var(--border); background:rgba(124,58,237,.06); }
+    .events-hdr-title { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:700; color:var(--white); }
+    .ev-live { width:8px; height:8px; background:var(--p2); border-radius:50%; animation:lpulse 2s ease-in-out infinite; }
+    .ev-toggle-btn { display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; background:rgba(124,58,237,.15); border:1px solid rgba(124,58,237,.3); color:var(--p3); padding:6px 14px; border-radius:20px; cursor:pointer; transition:all .2s; margin-left:auto; }
+    .ev-toggle-btn:hover { background:rgba(124,58,237,.3); border-color:var(--p2); color:var(--accent); }
+    .ev-toggle-arrow { transition:transform .35s ease; display:inline-block; }
+    .ev-toggle-btn.closed .ev-toggle-arrow { transform:rotate(-90deg); }
+    .events-body { max-height:2000px; overflow:hidden; opacity:1; transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s ease; }
+    .events-body.hidden { max-height:0; opacity:0; }
+    .ev-loading { padding:40px; text-align:center; }
+    .ev-loading-spinner { width:32px; height:32px; border:2px solid var(--border); border-top-color:var(--p2); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
+    @keyframes spin { to{transform:rotate(360deg)} }
+    .ev-loading-text { font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--g1); letter-spacing:.1em; }
+    .ev-error { padding:32px 28px; display:flex; align-items:flex-start; gap:14px; }
+    .ev-error-icon { font-size:1.4rem; flex-shrink:0; }
+    .ev-error-msg { font-size:.85rem; color:var(--g2); line-height:1.6; }
+    .ev-error-msg strong { color:var(--p3); }
+    .ev-empty { padding:40px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--g1); letter-spacing:.1em; }
+    .event-row { display:grid; grid-template-columns:130px 1fr auto auto; align-items:center; gap:14px; padding:16px 28px; border-bottom:1px solid var(--border); transition:background .2s; }
+    .event-row:last-child { border-bottom:none; }
+    .event-row:hover { background:rgba(124,58,237,.05); }
+    .ev-date { font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--p3); letter-spacing:.06em; line-height:1.5; }
+    .ev-name { font-weight:600; font-size:.9rem; color:var(--white); }
+    .ev-sub { font-size:.75rem; font-weight:400; color:var(--g2); margin-top:2px; }
+    .ev-badge { font-family:'JetBrains Mono',monospace; font-size:.55rem; letter-spacing:.1em; text-transform:uppercase; padding:4px 10px; border-radius:20px; white-space:nowrap; }
+    .b-open { background:rgba(124,58,237,.2); color:var(--p3); border:1px solid rgba(124,58,237,.35); }
+    .b-soon { background:rgba(234,179,8,.12); color:#fbbf24; border:1px solid rgba(234,179,8,.25); }
+    .b-full { background:rgba(239,68,68,.12); color:#f87171; border:1px solid rgba(239,68,68,.25); }
+    .zoom-btn { display:inline-flex; align-items:center; gap:6px; font-family:'Outfit',sans-serif; font-size:.7rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; padding:6px 14px; border-radius:6px; background:rgba(37,99,235,.2); color:#93c5fd; border:1px solid rgba(37,99,235,.35); cursor:pointer; transition:all .25s; white-space:nowrap; text-decoration:none; }
+    .zoom-btn:hover { background:rgba(37,99,235,.35); border-color:#60a5fa; color:#bfdbfe; transform:translateY(-1px); }
+    .zoom-btn.disabled { background:rgba(255,255,255,.04); color:var(--g1); border-color:rgba(255,255,255,.1); cursor:not-allowed; pointer-events:none; }
+
+    /* ── CONTACT ── */
+    #contact { background:var(--bg2); }
+    .contact-inner { max-width:680px; margin:0 auto; text-align:center; }
+    .contact-inner .stag { justify-content:center; }
+    .contact-inner .stag::before { display:none; }
+    .contact-h { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:800; color:var(--white); letter-spacing:-.03em; line-height:1.1; margin-bottom:16px; }
+    .contact-sub { font-size:.95rem; color:var(--g2); margin-bottom:48px; line-height:1.8; }
+    .contact-cards { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+    .c-card { display:flex; align-items:center; gap:14px; background:var(--bg3); border:1px solid var(--border); border-radius:10px; padding:20px 26px; transition:all .3s; min-width:190px; }
+    .c-card:hover { border-color:var(--p2); transform:translateY(-4px); box-shadow:0 16px 40px rgba(124,58,237,.25); }
+    .c-card svg { width:22px; height:22px; color:var(--p3); flex-shrink:0; }
+    .c-plat { font-family:'JetBrains Mono',monospace; font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; color:var(--g1); margin-bottom:2px; }
+    .c-handle { font-weight:600; font-size:.88rem; color:var(--white); }
+
+    /* ── FOOTER ── */
+    footer { position:relative; z-index:1; background:var(--bg2); border-top:1px solid var(--border); padding:26px 6%; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    .foot-l { font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--g1); letter-spacing:.08em; }
+    .foot-l span { color:var(--p3); }
+    .foot-r { font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--g1); letter-spacing:.08em; cursor:pointer; transition:color .2s; }
+    .foot-r:hover { color:var(--p3); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:900px) {
+      .nav-links { gap:20px; }
+      .event-row { grid-template-columns:1fr auto; gap:10px; }
+      .ev-date { grid-column:1/-1; }
+      .zoom-btn { grid-column:1/-1; justify-self:start; }
+    }
+    @media (max-width:768px) {
+      .nav-links { display:none; }
+      .about-grid { grid-template-columns:1fr; gap:40px; }
+      .photo-box { max-width:260px; }
+      .projects-grid { grid-template-columns:1fr; }
+      .contact-cards { flex-direction:column; align-items:center; }
+      .hero-btns { flex-direction:column; align-items:flex-start; }
+      .ai-cards { grid-template-columns:1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ANNOUNCEMENT BAR                         [EDIT_ANN]
+       To change: edit the .ann-item text below.
+       Once Google Sheets is connected, this auto-updates
+       from the "Announcement" column in your sheet.
+  ═══════════════════════════════════════════════════════ -->
+  <div id="ann-bar">
+    <span class="ann-badge">📢 Live</span>
+    <div class="ann-track">
+      <div class="ann-scroll" id="ann-scroll">
+        <!-- First copy -->
+        <span class="ann-item">🤖 AI Tools &amp; Prompts for Kids — Live on Zoom · Every Saturday 10AM</span>
+        <span class="ann-item">🚀 Register now and get the Zoom link sent to your Gmail before class!</span>
+        <span class="ann-item">✨ New Module: AI Image Generation — Starting Feb 2025</span>
+        <span class="ann-item">🎓 Limited Seats Available — Scroll down to register</span>
+        <!-- Exact duplicate for seamless infinite loop — keep both copies identical -->
+        <span class="ann-item">🤖 AI Tools &amp; Prompts for Kids — Live on Zoom · Every Saturday 10AM</span>
+        <span class="ann-item">🚀 Register now and get the Zoom link sent to your Gmail before class!</span>
+        <span class="ann-item">✨ New Module: AI Image Generation — Starting Feb 2025</span>
+        <span class="ann-item">🎓 Limited Seats Available — Scroll down to register</span>
+      </div>
+    </div>
+    <button class="ann-close" onclick="closeBar()" title="Close">✕</button>
+  </div>
+
+  <div id="c-dot"></div>
+  <div id="c-ring"></div>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <canvas id="particles"></canvas>
+
+  <div class="wrap">
+
+    <!-- ═══════════════════════════════════════════════════════
+         NAV                                      [EDIT_NAME]
+         Change "YN" to your initials
+    ═══════════════════════════════════════════════════════ -->
+    <nav>
+      <div class="logo"><span>Vishnu.M.A</span> · dev</div><!-- ✏️ Change YN -->
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#ai-classes">AI Classes</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════
+         HERO                                     [EDIT_NAME]
+         Change "Your" and "Name" to your real first/last name
+    ═══════════════════════════════════════════════════════ -->
+    <section id="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-eyebrow"><div class="ldot"></div> Available for work</div>
+      <h1 class="hero-name">
+        Myself<!-- ✏️ Your first name -->
+        <br><span class="grad">Vishnu M.A</span><!-- ✏️ Your last name -->
+      </h1>
+      <p class="hero-role">&gt; <span id="typed"></span><span class="cur">_</span></p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-pri">View My Work</a>
+        <a href="#ai-classes" class="btn btn-ghost">Join AI Class</a>
+      </div>
+      <div class="hero-scroll"><div class="scroll-bar"></div>scroll</div>
+    </section>
+
+    <div class="divl"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         ABOUT                          [EDIT_PHOTO] [EDIT_ABOUT]
+
+         HOW TO ADD YOUR PROFILE PHOTO:
+         1. Save your photo in the SAME folder as this HTML file
+            (e.g. save it as "photo.jpg" next to portfolio.html)
+         2. Delete the line:  <div class="photo-init">YN</div>
+         3. Uncomment the img tag below and set src="photo.jpg"
+            (or whatever your filename is)
+
+         SUPPORTED FORMATS: .jpg  .jpeg  .png  .webp
+         RECOMMENDED SIZE:  500×500px or larger square photo
+    ═══════════════════════════════════════════════════════ -->
+    <section id="about">
+      <div class="ctr">
+        <p class="stag rv">Introduction</p>
+        <h2 class="stitle rv">About Me</h2>
+        <div class="about-grid">
+          <div class="rv">
+            <div class="photo-wrap">
+              <div class="photo-box">
+                <!-- ✏️ OPTION A — No photo yet (shows your initials): -->
+                <div class="photo-init">YN</div><!-- ✏️ Change YN to your initials -->
+
+                <!-- ✏️ OPTION B — Add your photo (delete Option A line above, then uncomment below):
+                <img src="photo.jpg" alt="Your Name">
+                -->
+              </div>
+              <div class="corner tl"></div>
+              <div class="corner br"></div>
+            </div>
+          </div>
+
+          <!-- ✏️ EDIT_ABOUT — Replace all text below with your real info -->
+          <div class="atext rv">
+            <p>Hi! I'm <strong>Your Name</strong>, a passionate Web Developer who loves building beautiful, performant digital experiences that look great on every screen.</p>
+            <p>I care deeply about the details — from pixel-perfect layouts to smooth animations. Whether it's a landing page or a full-stack application, I bring craft and dedication to every project.</p>
+            <p>I also teach <strong>AI Tools &amp; Prompts</strong> for kids via Zoom — helping the next generation understand and use AI creatively and responsibly.</p>
+            <div class="stats-grid">
+              <!-- ✏️ Replace each value with your real details -->
+              <div class="stat"><div class="slbl">Location</div><div class="sval">Your City, Country</div></div>
+              <div class="stat"><div class="slbl">Experience</div><div class="sval">X+ Years</div></div>
+              <div class="stat"><div class="slbl">Specialty</div><div class="sval">Full Stack Dev</div></div>
+              <div class="stat"><div class="slbl">Status</div><div class="sval" style="color:var(--p3)">Open to Work ✦</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divl"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SKILLS                                 [EDIT_SKILLS]
+
+         HOW TO EDIT A SKILL:
+         - sk-icon  → any emoji
+         - sk-name  → technology name
+         - data-width → percentage 0 to 100 (bar fill)
+         - sk-pct   → label text shown under the bar
+
+         HOW TO ADD A NEW SKILL:
+         Copy one entire <div class="skill-card rv"> block
+         and paste it after the last skill card.
+    ═══════════════════════════════════════════════════════ -->
+    <section id="skills">
+      <div class="ctr">
+        <p class="stag rv">What I Work With</p>
+        <h2 class="stitle rv">Skills &amp; Technologies</h2>
+        <div class="skills-grid">
+
+          <div class="skill-card rv">
+            <span class="sk-icon">🌐</span>
+            <div class="sk-name">HTML / CSS</div>
+            <div class="sk-track"><div class="sk-fill" data-width="50"></div></div>
+            <div class="sk-pct">  Intermediate · 50%</div>
+          </div>
+
+          <div class="skill-card rv">
+            <span class="sk-icon">⚡</span>
+            <div class="sk-name">JavaScript</div>
+            <div class="sk-track"><div class="sk-fill" data-width="30"></div></div>
+            <div class="sk-pct">Expert · 90%</div>
+          </div>
+
+          <div class="skill-card rv">
+            <span class="sk-icon">⚛️</span>
+            <div class="sk-name">React</div>
+            <div class="sk-track"><div class="sk-fill" data-width="30"></div></div>
+            <div class="sk-pct">Advanced · 85%</div>
+          </div>
+
+          <div class="skill-card rv">
+            <span class="sk-icon">🟢</span>
+            <div class="sk-name">Node.js</div>
+            <div class="sk-track"><div class="sk-fill" data-width="50"></div></div>
+            <div class="sk-pct">Advanced · 80%</div>
+          </div>
+
+          <div class="skill-card rv">
+            <span class="sk-icon">🗄️</span>
+            <div class="sk-name">Databases / SQL</div>
+            <div class="sk-track"><div class="sk-fill" data-width="85"></div></div>
+            <div class="sk-pct">Proficient · 75%</div>
+          </div>
+
+          <div class="skill-card rv">
+            <span class="sk-icon">🐙</span>
+            <div class="sk-name">Git &amp; GitHub</div>
+            <div class="sk-track"><div class="sk-fill" data-width="88"></div></div>
+            <div class="sk-pct">Advanced · 88%</div>
+          </div>
+
+          <!-- ✏️ COPY THIS BLOCK TO ADD A NEW SKILL:
+          <div class="skill-card rv">
+            <span class="sk-icon">🔥</span>
+            <div class="sk-name">Your Skill Name</div>
+            <div class="sk-track"><div class="sk-fill" data-width="80"></div></div>
+            <div class="sk-pct">Advanced · 80%</div>
+          </div>
+          -->
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divl"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PROJECTS                              [EDIT_PROJECT]
+
+         HOW TO ADD A PROJECT PHOTO:
+         1. Save your screenshot in the same folder as this file
+            Example filenames: project1.jpg  myapp.png  site.webp
+         2. In the project card, find the .proj-thumb div
+         3. Replace the ENTIRE .proj-thumb-placeholder div with:
+
+            <img src="project1.jpg" alt="Project Name">
+            <div class="proj-overlay"></div>
+
+         RECOMMENDED SCREENSHOT SIZE: 1280×720px (16:9 ratio)
+
+         HOW TO ADD A NEW PROJECT:
+         Copy one entire <div class="proj-card rv"> block
+         and paste it after the last project card.
+         Change: proj-name, proj-desc, .tag text, plnk href values
+
+         LINKS:
+         - Live Demo link → replace href="#" with https://yoursite.com
+         - GitHub link    → replace href="#" with https://github.com/you/repo
+         - If no link yet → remove that <a> tag entirely
+    ═══════════════════════════════════════════════════════ -->
+    <section id="projects">
+      <div class="ctr">
+        <p class="stag rv">What I've Built</p>
+        <h2 class="stitle rv">Projects</h2>
+        <div class="projects-grid">
+
+          <!-- ── PROJECT 1 ── -->
+          <div class="proj-card rv">
+            <div class="proj-thumb">
+              <!--
+                ✏️ WITH PHOTO: delete .proj-thumb-placeholder below and replace with:
+                <img src="project1.jpg" alt="Project One">
+                <div class="proj-overlay"></div>
+              -->
+              <div class="proj-thumb-placeholder">
+                <div class="proj-num">01</div>
+                <div class="proj-glow"></div>
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <!-- ✏️ Change or add tags for the tech you used -->
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">MongoDB</span>
+              </div>
+              <div class="proj-name">Solar Cost Calculator</div><!-- ✏️ Your project name -->
+              <div class="proj-desc">
+                <!-- ✏️ Describe your project: what it does, the problem it solves, what makes it special -->
+                Replace this with a description of your first project. What does it do? What problem does it solve? What are you most proud of?
+              </div>
+              <div class="proj-footer">
+                <a href="#" class="plnk">🌐 Live Demo</a><!-- ✏️ Replace # with your live site URL -->
+                <a href="#" class="plnk">🐙 GitHub</a><!-- ✏️ Replace # with your GitHub repo URL -->
+              </div>
+            </div>
+          </div>
+
+          <!-- ── PROJECT 2 ── -->
+          <div class="proj-card rv">
+            <div class="proj-thumb">
+              <!--
+                ✏️ WITH PHOTO: delete .proj-thumb-placeholder below and replace with:
+                <img src="project2.jpg" alt="Project Two">
+                <div class="proj-overlay"></div>
+              -->
+              <div class="proj-thumb-placeholder">
+                <div class="proj-num">02</div>
+                <div class="proj-glow"></div>
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="tag">Vue.js</span>
+                <span class="tag">Firebase</span>
+              </div>
+              <div class="proj-name">Personal Portfolio Website</div>
+              <div class="proj-desc">
+                Describe your second project here. What tech did you use? What challenges did you overcome? What did you learn?
+              </div>
+              <div class="proj-footer">
+                <a href="#" class="plnk">🌐 Live Demo</a>
+                <a href="#" class="plnk">🐙 GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── PROJECT 3 ── -->
+          <div class="proj-card rv">
+            <div class="proj-thumb">
+              <!--
+                ✏️ WITH PHOTO: delete .proj-thumb-placeholder below and replace with:
+                <img src="project3.jpg" alt="Project Three">
+                <div class="proj-overlay"></div>
+              -->
+              <div class="proj-thumb-placeholder">
+                <div class="proj-num">03</div>
+                <div class="proj-glow"></div>
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+              <div class="proj-name">Upcoming Ai integrated SAAS </div>
+              <div class="proj-desc">
+                Your third showcase project. Replace with real name, description, tags and links.
+              </div>
+              <div class="proj-footer">
+                <a href="#" class="plnk">🌐 Live Demo</a>
+                <a href="#" class="plnk">🐙 GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <!--
+            ✏️ ADD A NEW PROJECT — copy everything between the dashes and paste below:
+            ┌─────────────────────────────────────────────────────┐
+            │  <div class="proj-card rv">                         │
+            │    <div class="proj-thumb">                         │
+            │      <img src="project4.jpg" alt="Project Four">    │
+            │      <div class="proj-overlay"></div>               │
+            │    </div>                                           │
+            │    <div class="proj-body">                          │
+            │      <div class="proj-tags">                        │
+            │        <span class="tag">React</span>               │
+            │        <span class="tag">Tailwind</span>            │
+            │      </div>                                         │
+            │      <div class="proj-name">Project Four</div>      │
+            │      <div class="proj-desc">Description here.</div> │
+            │      <div class="proj-footer">                      │
+            │        <a href="#" class="plnk">🌐 Live Demo</a>    │
+            │        <a href="#" class="plnk">🐙 GitHub</a>       │
+            │      </div>                                         │
+            │    </div>                                           │
+            │  </div>                                             │
+            └─────────────────────────────────────────────────────┘
+          -->
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divl"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         AI CLASSES                            [EDIT_AICARD]
+
+         HOW TO EDIT A CLASS CARD:
+         - ai-icon  → any emoji
+         - ai-title → class name
+         - ai-desc  → description
+         - ai-tag   → status or schedule label
+
+         HOW TO ADD A NEW CLASS CARD:
+         Copy one .ai-card rv block and paste after the last one.
+    ═══════════════════════════════════════════════════════ -->
+    <section id="ai-classes">
+      <div class="ctr">
+        <p class="stag rv">Teaching &amp; Learning</p>
+        <h2 class="stitle rv">AI Classes for Kids</h2>
+
+        <div class="ai-intro rv">
+          <p>I run live, beginner-friendly AI classes on <strong>Zoom</strong> designed for kids who want to explore Artificial Intelligence. From understanding how AI works, to writing prompts and generating images — sessions are fun, interactive, and practical. <strong>No prior experience needed!</strong></p>
+        </div>
+
+        <div class="ai-cards">
+
+          <div class="ai-card rv">
+            <span class="ai-icon">🤖</span>
+            <div class="ai-title">Intro to AI &amp; ChatGPT</div>
+            <div class="ai-desc">Kids learn what AI is, how it thinks, and how to have great conversations with ChatGPT. Perfect for beginners aged 8 and up.</div>
+            <span class="ai-tag">📅 Every Saturday</span>
+          </div>
+
+          <div class="ai-card rv">
+            <span class="ai-icon">✍️</span>
+            <div class="ai-title">Prompt Engineering for Kids</div>
+            <div class="ai-desc">Learn the art of writing smart prompts — get AI to write stories, solve problems, and create content. Hands-on, creative, and super fun.</div>
+            <span class="ai-tag">🟢 Open Enrollment</span>
+          </div>
+
+          <div class="ai-card rv">
+            <span class="ai-icon">🎨</span>
+            <div class="ai-title">AI Image Generation</div>
+            <div class="ai-desc">Create stunning artwork with AI tools like DALL·E. Kids learn to describe their ideas and turn them into amazing images using prompts.</div>
+            <span class="ai-tag">🆕 New Module</span>
+          </div>
+
+          <div class="ai-card rv">
+            <span class="ai-icon">🛠️</span>
+            <div class="ai-title">AI Tools Explorer</div>
+            <div class="ai-desc">A guided tour of the best free AI tools — for writing, learning, music, and more. Kids leave with a personal AI toolkit.</div>
+            <span class="ai-tag">🔥 Most Popular</span>
+          </div>
+
+          <!-- ✏️ COPY THIS BLOCK TO ADD A NEW CLASS CARD:
+          <div class="ai-card rv">
+            <span class="ai-icon">🧠</span>
+            <div class="ai-title">Your Class Title</div>
+            <div class="ai-desc">Describe what kids will learn in this session. Keep it exciting and clear.</div>
+            <span class="ai-tag">📅 Your Schedule</span>
+          </div>
+          -->
+
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             GOOGLE FORM REGISTRATION            [EDIT_FORM]
+
+             HOW TO ADD YOUR GOOGLE FORM:
+             1. Go to forms.google.com → create your form
+             2. Suggested fields to add:
+                - Child's Full Name
+                - Parent's Gmail Address  ← IMPORTANT for Zoom link
+                - Child's Age
+                - Which class they want to join
+                - Any questions or notes
+             3. Click "Send" → click the "</>" Embed tab
+             4. Copy the URL inside src="..."
+             5. Delete the .form-fallback div below
+             6. Uncomment the <iframe> and paste your URL
+
+             AUTO-SEND ZOOM LINK TO GMAIL:
+             After creating your form, install the FREE add-on:
+             "Email Notifications for Google Forms"
+             → In Forms: 3-dot menu → Add-ons → search it → install
+             → Set it up to auto-email the Gmail field
+             → Include your Zoom link in the email template
+             → Now every registrant gets the Zoom link automatically!
+        ═══════════════════════════════════════════════ -->
+        <div class="form-section rv">
+          <div class="form-hdr">
+            <span class="form-hdr-icon">📋</span>
+            <div>
+              <div class="form-hdr-title">Register for a Class</div>
+              <div class="form-hdr-sub">Fill the form — your Zoom link will be sent to your Gmail before class starts</div>
+            </div>
+          </div>
+          <div class="form-notice">
+            <span>📧</span>&nbsp;
+            <span>After registering, you will receive the <strong>Zoom meeting link</strong> directly to your <strong>Gmail address</strong> at least 30 minutes before the class begins. Make sure to use a valid Gmail when filling out the form!</span>
+          </div>
+          <div id="formEmbed">
+
+            <!--
+              ✏️ STEP 1 — Delete the .form-fallback div below once you have your form URL.
+              ✏️ STEP 2 — Uncomment this iframe and paste your Google Form embed URL:
+
+              <iframe
+                src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true"
+                width="100%"
+                height="700"
+                frameborder="0"
+                marginheight="0"
+                marginwidth="0"
+                title="Class Registration Form">
+                Loading form...
+              </iframe>
+            -->
+
+            <div class="form-fallback">
+              <p>📋 Your registration form will appear here once you connect your Google Form.<br>Follow the instructions in the HTML comments above — it only takes 2 minutes!</p>
+              <!-- ✏️ Also add a direct link to the form as a backup: -->
+              <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="open-form-btn">📝 Open Registration Form</a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- EVENTS TABLE — auto-loaded from Google Sheets -->
+        <div class="events-box rv">
+          <div class="events-hdr">
+            <div class="events-hdr-title">📅 Upcoming Classes &amp; Events</div>
+            <div class="ev-live"></div>
+            <button class="ev-toggle-btn" id="evToggleBtn" onclick="toggleEvents()">
+              <span id="evToggleTxt">Hide</span>
+              <span class="ev-toggle-arrow">▼</span>
+            </button>
+          </div>
+          <div class="events-body" id="eventsBody">
+            <div class="ev-loading" id="evLoading">
+              <div class="ev-loading-spinner"></div>
+              <div class="ev-loading-text">Loading classes...</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divl"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CONTACT                               [EDIT_CONTACT]
+         Replace email, Instagram handle, and GitHub username
+    ═══════════════════════════════════════════════════════ -->
+    <section id="contact">
+      <div class="ctr">
+        <div class="contact-inner">
+          <p class="stag rv">Reach Out</p>
+          <h2 class="contact-h rv">Get In Touch</h2>
+          <p class="contact-sub rv">Have a project, want to join an AI class, or just want to say hello? My inbox is always open!</p>
+          <div class="contact-cards rv">
+
+            <!-- ✏️ Replace href and c-handle text with your real email -->
+            <a href="mailto:youremail@example.com" class="c-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <polyline points="2,7 12,14 22,7"/>
+              </svg>
+              <div>
+                <div class="c-plat">email</div>
+                <div class="c-handle">vishnumalen5@gmail.com</div><!-- ✏️ Your email -->
+              </div>
+            </a>
+
+            <!-- ✏️ Replace href and c-handle text with your Instagram -->
+            <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener" class="c-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+              </svg>
+              <div>
+                <div class="c-plat">Instagram</div>
+                <div class="c-handle">@yourhandle</div><!-- ✏️ Your Instagram handle -->
+              </div>
+            </a>
+
+            <!-- ✏️ Replace href and c-handle text with your GitHub -->
+            <a href="https://github.com/symptomsync-med" target="_blank" rel="noopener" class="c-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+              <div>
+                <div class="c-plat">GitHub</div>
+                <div class="c-handle">Vishnu.M.A</div><!-- ✏️ Your GitHub username -->
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot-l">© 2025 <span>Your Name</span> · All rights reserved</div><!-- ✏️ Change Your Name -->
+      <div class="foot-r" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ back to top</div>
+    </footer>
+
+  </div><!-- end .wrap -->
+
+  <script>
+
+  /* ════════════════════════════════════════════════════════
+     EDIT_SHEETS — GOOGLE SHEETS CONFIG
+     ════════════════════════════════════════════════════════
+     SETUP STEPS:
+     1. Create a Google Sheet with EXACTLY these column headers in Row 1:
+        Date | Time | ClassName | Details | Status | ZoomLink | Visible | Announcement
+
+     2. Fill in your classes (one per row). Example row:
+        Feb 1, 2025 | 10:00 AM | Intro to ChatGPT | 60 min · Zoom · Ages 8-14 | Open | https://zoom.us/j/123 | YES | 🚀 New class Feb 1!
+
+     3. File → Share → Publish to web
+        → Choose Sheet1, format CSV → Publish → Copy the URL
+
+     4. Paste the URL below replacing YOUR_GOOGLE_SHEET_CSV_URL_HERE
+
+     COLUMN GUIDE:
+     Date         →  Feb 1, 2025
+     Time         →  10:00 AM
+     ClassName    →  Name of the class
+     Details      →  60 min · Via Zoom · Ages 8-14
+     Status       →  Open  OR  Filling Fast  OR  Full
+     ZoomLink     →  https://zoom.us/j/XXXXXXXXX  (or leave blank)
+     Visible      →  YES to show,  NO to hide
+     Announcement →  Text for the scrolling top bar (optional)
+  ════════════════════════════════════════════════════════ */
+
+  var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRaeQENOSGvzvKy0PezJYkxbCLZTbXN6M9aDm15z8yLuxCR6ZeLmB8W3DD4qILsZpiFXAQl1pRw3cXO/pub?gid=0&single=true&output=csv'; // ✏️ Paste your URL here
+
+  /* ════════════════════════════════════════════════════════
+     DO NOT EDIT BELOW THIS LINE
+  ════════════════════════════════════════════════════════ */
+
+    /* ── ANNOUNCEMENT BAR ── */
+    document.body.classList.add('has-bar');
+    function closeBar() {
+      document.getElementById('ann-bar').style.display = 'none';
+      document.body.classList.remove('has-bar');
+    }
+
+    /* ── MARQUEE (JS-driven, pixel perfect) ── */
+    var annScroll = document.getElementById('ann-scroll');
+    var annPos = 0;
+    var annPaused = false;
+    var annSpeed = 0.6; // pixels per frame — increase to go faster
+
+    annScroll.addEventListener('mouseenter', function() { annPaused = true; });
+    annScroll.addEventListener('mouseleave', function() { annPaused = false; });
+
+    function runMarquee() {
+      if (!annPaused) {
+        // halfWidth = width of the first set of items (half the total duplicated content)
+        var halfWidth = annScroll.scrollWidth / 2;
+        annPos += annSpeed;
+        if (annPos >= halfWidth) {
+          annPos = 0; // seamless reset back to start
+        }
+        annScroll.style.transform = 'translateX(-' + annPos + 'px)';
+      }
+      requestAnimationFrame(runMarquee);
+    }
+    runMarquee();
+
+    /* ── CUSTOM CURSOR ── */
+    var dot = document.getElementById('c-dot');
+    var ring = document.getElementById('c-ring');
+    var mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; });
+    (function cursorLoop() {
+      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+      rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(cursorLoop);
+    })();
+    document.querySelectorAll('a,button,.skill-card,.proj-card,.c-card,.stat,.ai-card,.zoom-btn,.open-form-btn').forEach(function(el) {
+      el.addEventListener('mouseenter', function() { document.body.classList.add('hov'); });
+      el.addEventListener('mouseleave', function() { document.body.classList.remove('hov'); });
+    });
+
+    /* ── TYPING ANIMATION ── */
+    var roles = ['Web Developer', 'Frontend Engineer', 'Full Stack Builder', 'AI Educator'];
+    var ri = 0, ci = 0, isDel = false;
+    var typedEl = document.getElementById('typed');
+    function typeLoop() {
+      var word = roles[ri];
+      typedEl.textContent = isDel ? word.slice(0,--ci) : word.slice(0,++ci);
+      var spd = isDel ? 50 : 95;
+      if (!isDel && ci === word.length) { isDel = true; spd = 2000; }
+      else if (isDel && ci === 0) { isDel = false; ri = (ri+1) % roles.length; spd = 400; }
+      setTimeout(typeLoop, spd);
+    }
+    typeLoop();
+
+    /* ── SCROLL REVEAL ── */
+    var rvEls = document.querySelectorAll('.rv');
+    var rvObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var siblings = Array.from(entry.target.parentNode.children).filter(function(c){ return c.classList.contains('rv'); });
+          var idx = siblings.indexOf(entry.target);
+          entry.target.style.transitionDelay = (idx * 0.08) + 's';
+          entry.target.classList.add('on');
+        }
+      });
+    }, { threshold: 0.1 });
+    rvEls.forEach(function(el) { rvObs.observe(el); });
+
+    /* ── SKILL BARS ── */
+    var skillsDone = false;
+    var skillsObs = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting && !skillsDone) {
+        skillsDone = true;
+        document.querySelectorAll('.sk-fill').forEach(function(bar) {
+          setTimeout(function() { bar.style.width = bar.getAttribute('data-width') + '%'; }, 200);
+        });
+      }
+    }, { threshold: 0.2 });
+    var skillsSec = document.getElementById('skills');
+    if (skillsSec) skillsObs.observe(skillsSec);
+
+    /* ── PARTICLES ── */
+    var cvs = document.getElementById('particles');
+    var ctx = cvs.getContext('2d');
+    var W, H, pts = [];
+    function resize() { W = cvs.width = window.innerWidth; H = cvs.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    function Pt() {
+      this.init = function(f) { this.x=Math.random()*W; this.y=f?H+5:Math.random()*H; this.r=Math.random()*1.4+0.3; this.vy=-(Math.random()*.45+.12); this.vx=(Math.random()-.5)*.25; this.a=Math.random()*.3+.04; };
+      this.init(false);
+      this.tick = function() { this.x+=this.vx; this.y+=this.vy; if(this.y<-5)this.init(true); };
+      this.draw = function() { ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle='rgba(192,132,252,'+this.a+')'; ctx.fill(); };
+    }
+    for (var i = 0; i < 100; i++) pts.push(new Pt());
+    (function animPts() { ctx.clearRect(0,0,W,H); pts.forEach(function(p){p.tick();p.draw();}); requestAnimationFrame(animPts); })();
+
+    /* ── EVENTS TOGGLE ── */
+    function toggleEvents() {
+      var body = document.getElementById('eventsBody');
+      var btn  = document.getElementById('evToggleBtn');
+      var txt  = document.getElementById('evToggleTxt');
+      var isHidden = body.classList.toggle('hidden');
+      btn.classList.toggle('closed', isHidden);
+      txt.textContent = isHidden ? 'Show' : 'Hide';
+    }
+
+    /* ── ACTIVE NAV HIGHLIGHT ── */
+    var allSecs = document.querySelectorAll('section[id]');
+    var navAs   = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', function() {
+      var sy = window.scrollY;
+      allSecs.forEach(function(s) {
+        if (sy >= s.offsetTop - 150) {
+          navAs.forEach(function(a) { a.style.color = ''; });
+          var act = document.querySelector('.nav-links a[href="#' + s.id + '"]');
+          if (act) act.style.color = 'var(--p3)';
+        }
+      });
+    });
+
+    /* ── GOOGLE SHEETS LOADER ── */
+    function parseCSV(text) {
+      var lines = text.trim().split('\n');
+      if (lines.length < 2) return [];
+      var headers = lines[0].split(',').map(function(h){ return h.trim().replace(/^"|"$/g,''); });
+      var rows = [];
+      for (var i = 1; i < lines.length; i++) {
+        var vals = smartSplit(lines[i]);
+        var obj = {};
+        headers.forEach(function(h, idx){ obj[h] = (vals[idx]||'').trim().replace(/^"|"$/g,''); });
+        rows.push(obj);
+      }
+      return rows;
+    }
+
+    function smartSplit(line) {
+      var result=[], cur='', inQ=false;
+      for (var i=0;i<line.length;i++) {
+        var c=line[i];
+        if(c==='"'){inQ=!inQ;}
+        else if(c===','&&!inQ){result.push(cur);cur='';}
+        else{cur+=c;}
+      }
+      result.push(cur);
+      return result;
+    }
+
+    function badgeClass(status) {
+      var s=(status||'').toLowerCase();
+      if(s==='open') return 'b-open';
+      if(s.indexOf('fill')>-1||s.indexOf('fast')>-1) return 'b-soon';
+      if(s==='full') return 'b-full';
+      return 'b-open';
+    }
+
+    function renderEvents(rows) {
+      var body = document.getElementById('eventsBody');
+      var visible = rows.filter(function(r){ return (r.Visible||'').toUpperCase()==='YES'; });
+      if (visible.length === 0) {
+        body.innerHTML = '<div class="ev-empty">No upcoming classes right now — check back soon! 🎓</div>';
+        return;
+      }
+      var html = '';
+      visible.forEach(function(r) {
+        var isFull = (r.Status||'').toLowerCase()==='full';
+        var hasZoom = r.ZoomLink && r.ZoomLink.indexOf('http')===0;
+        var zoomBtn = isFull
+          ? '<span class="zoom-btn disabled">🔒 Full</span>'
+          : hasZoom
+            ? '<a href="'+r.ZoomLink+'" target="_blank" rel="noopener" class="zoom-btn">📹 Join Zoom</a>'
+            : '<span class="zoom-btn disabled">🔜 Link Soon</span>';
+        html += '<div class="event-row">'
+          +'<div class="ev-date">'+(r.Date||'')+'<br>'+(r.Time||'')+'</div>'
+          +'<div><div class="ev-name">'+(r.ClassName||'')+'</div>'
+          +'<div class="ev-sub">'+(r.Details||'')+'</div></div>'
+          +'<span class="ev-badge '+badgeClass(r.Status)+'">'+(r.Status||'')+'</span>'
+          +zoomBtn
+          +'</div>';
+      });
+      body.innerHTML = html;
+    }
+
+    function renderAnnouncements(rows) {
+      var msgs = [];
+      rows.forEach(function(r) {
+        if (r.Announcement && r.Announcement.trim().length > 0 && (r.Visible||'').toUpperCase()==='YES') {
+          msgs.push(r.Announcement.trim());
+        }
+      });
+      if (msgs.length === 0) return;
+      var scroll = document.getElementById('ann-scroll');
+      var doubled = msgs.concat(msgs);
+      scroll.innerHTML = doubled.map(function(m){ return '<span class="ann-item">'+m+'</span>'; }).join('');
+      annPos = 0; // reset position when new content loads
+    }
+
+    function loadSheet() {
+      if (!SHEET_CSV_URL || SHEET_CSV_URL === 'YOUR_GOOGLE_SHEET_CSV_URL_HERE') {
+        document.getElementById('eventsBody').innerHTML =
+          '<div class="ev-error"><span class="ev-error-icon">📊</span>'
+          +'<div class="ev-error-msg"><strong>Google Sheets not connected yet.</strong><br>'
+          +'Follow the setup instructions in the EDIT_SHEETS section of the code. '
+          +'Once connected, your classes will appear here automatically!</div></div>';
+        return;
+      }
+      fetch(SHEET_CSV_URL)
+        .then(function(res){ if(!res.ok) throw new Error('fail'); return res.text(); })
+        .then(function(csv){ var rows=parseCSV(csv); renderEvents(rows); renderAnnouncements(rows); })
+        .catch(function(){
+          document.getElementById('eventsBody').innerHTML =
+            '<div class="ev-error"><span class="ev-error-icon">⚠️</span>'
+            +'<div class="ev-error-msg"><strong>Could not load classes.</strong><br>'
+            +'Check that your Google Sheet is published as CSV and set to "Anyone can view".</div></div>';
+        });
+    }
+
+    loadSheet();
+
+  </script>
+
+</body>
+</html>
